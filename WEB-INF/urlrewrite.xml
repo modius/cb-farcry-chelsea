@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE urlrewrite
+    PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+    "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+
+<urlrewrite>
+
+
+    <rule>
+     <condition type="request-uri" operator="notequal">^/farcry/|^/webtop|^/flex2gateway|^/flashservices|^/CFIDE|^/debug|^/afterburner|^/migration|^/railo-context</condition>
+    	
+       <from>^(.*\..*)$</from>
+       <to>/farcry/projects/ea/www$1?%{query-string}</to>
+    </rule>
+	
+    <rule>
+     <condition type="request-uri" operator="notequal">^/farcry/|^/webtop|^/flex2gateway|^/flashservices|^/CFIDE|^/debug|^/afterburner|^/migration|^/railo-context</condition>
+    	
+       <from>^([^.]*)$</from>
+       <to>/farcry/projects/ea/www/index.cfm?furl=$1&amp;%{query-string}</to>
+    </rule>
+
+    <rule>
+       <from>^/webtop(.*)$</from>
+       <to type="redirect">/farcry/core/webtop$1</to>
+    </rule>
+
+</urlrewrite>
