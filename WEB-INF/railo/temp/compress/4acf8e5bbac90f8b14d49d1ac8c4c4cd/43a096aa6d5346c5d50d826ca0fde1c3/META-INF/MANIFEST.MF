@@ -1,0 +1,8 @@
+mapping-id: "294048b2533dbb79c5450e75b1a48ee8"
+mapping-type: "regular"
+mapping-virtual-path: "/railo-context-compiled"
+mapping-hidden: false
+mapping-physical-first: true
+mapping-readonly: false
+mapping-top-level: true
+mapping-inspect: ""
