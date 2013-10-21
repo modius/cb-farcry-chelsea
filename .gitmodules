@@ -1,0 +1,9 @@
+[submodule "farcry/core"]
+	path = farcry/core
+	url = https://github.com/farcrycore/core.git
+[submodule "farcry/plugins/farcrycms"]
+	path = farcry/plugins/farcrycms
+	url = https://github.com/farcrycore/plugin-farcrycms.git
+[submodule "farcry/projects/ea"]
+	path = farcry/projects/ea
+	url = https://modius@bitbucket.org/daemonite/ea-project.git
