@@ -31,7 +31,7 @@ Path placeholders:
 <!--	or ask your database distributor 																-->
 
 	<data-sources psq="true">
-	<data-source allow="511" blob="false" class="org.gjt.mm.mysql.Driver" clob="false" connectionTimeout="1" custom="useUnicode=true&amp;characterEncoding=UTF-8&amp;useLegacyDatetimeCode=true" database="ea-local" dsn="jdbc:mysql://{host}:{port}/{database}" host="localhost" metaCacheTimeout="60000" name="ea-local" port="3306" storage="false" username="root" validate="false"/></data-sources>
+	<data-source allow="511" blob="false" class="org.gjt.mm.mysql.Driver" clob="false" connectionLimit="-1" connectionTimeout="1" custom="useUnicode=true&amp;characterEncoding=UTF-8&amp;useLegacyDatetimeCode=true" database="chelsea-local" dsn="jdbc:mysql://{host}:{port}/{database}" host="localhost" metaCacheTimeout="60000" name="chelsea-local" password="" port="3306" storage="false" username="root" validate="false"/></data-sources>
 	
 	<resources>
     	<!--
@@ -110,7 +110,7 @@ Path placeholders:
 			for example when you define physical you can partiquel overwrite the archive.
 		-->
 		<mapping archive="{railo-web}/context/railo-context.ra" physical="{railo-web}/context/" primary="physical" readonly="yes" toplevel="yes" trusted="true" virtual="/railo-context/"/>
-	<mapping inspect-template="once" physical="{web-root-directory}/farcry" primary="physical" toplevel="true" virtual="/farcry"/><mapping inspect-template="once" physical="{web-root-directory}/farcry/projects/ea/www" primary="physical" toplevel="true" virtual="/"/></mappings>	
+	<mapping inspect-template="once" physical="{web-root-directory}/farcry" primary="physical" toplevel="true" virtual="/farcry"/><mapping inspect-template="once" physical="{web-root-directory}/farcry/projects/chelsea/www" primary="physical" toplevel="true" virtual="/"/></mappings>	
 	
 	<custom-tag>
 		<mapping physical="{railo-web}/customtags/" trusted="yes"/>
