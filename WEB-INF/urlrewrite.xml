@@ -6,19 +6,18 @@
 
 <urlrewrite>
 
-
     <rule>
-     <condition type="request-uri" operator="notequal">^/farcry/|^/webtop|^/flex2gateway|^/flashservices|^/CFIDE|^/debug|^/afterburner|^/migration|^/railo-context</condition>
+     <condition type="request-uri" operator="notequal">^/farcry/|^/webtop|^/flex2gateway|^/flashservices|^/CFIDE|^/debug|^/migration|^/railo-context</condition>
     	
        <from>^(.*\..*)$</from>
-       <to>/farcry/projects/ea/www$1?%{query-string}</to>
+       <to>/farcry/projects/chelsea/www$1?%{query-string}</to>
     </rule>
 	
     <rule>
-     <condition type="request-uri" operator="notequal">^/farcry/|^/webtop|^/flex2gateway|^/flashservices|^/CFIDE|^/debug|^/afterburner|^/migration|^/railo-context</condition>
+     <condition type="request-uri" operator="notequal">^/farcry/|^/webtop|^/flex2gateway|^/flashservices|^/CFIDE|^/debug|^/migration|^/railo-context</condition>
     	
        <from>^([^.]*)$</from>
-       <to>/farcry/projects/ea/www/index.cfm?furl=$1&amp;%{query-string}</to>
+       <to>/farcry/projects/chelsea/www/index.cfm?furl=$1&amp;%{query-string}</to>
     </rule>
 
     <rule>
