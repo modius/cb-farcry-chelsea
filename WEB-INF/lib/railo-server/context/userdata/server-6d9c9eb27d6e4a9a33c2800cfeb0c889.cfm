@@ -1,0 +1,1 @@
+{'fullscreen':'false','contentwidth':'689'}
