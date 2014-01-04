@@ -13,8 +13,7 @@ Project: Chelsea Boots (project-chelsea)
 
 ### Cloudbees SDK
 
-Download and install Cloudbees tool chain for your operating system:
-```http://wiki.cloudbees.com/bin/view/RUN/BeesSDK```
+Download and install [Cloudbees tool chain for your operating system](http://wiki.cloudbees.com/bin/view/RUN/BeesSDK)
 
 If you are on OSX, I recommend Homebrew
 
@@ -50,9 +49,9 @@ cd ~/CloudBees/chelsea
 bees run
 ```
 
-Browse to ```http://localhost:8080/farcry/index.cfm``` -- you should see an installation screen (with an error!).
+Browse to **http://localhost:8080/farcry/index.cfm** -- you should see an installation screen (with an error!).
 
-Browse to ```http://localhost:8080/railo-context/admin/web.cfm``` -- we're going to login to the Railo admin and set up some datasources for our project. The password for both server and web admin is ```chelsea```.
+Browse to **http://localhost:8080/railo-context/admin/web.cfm** -- we're going to login to the Railo admin and set up some datasources for our project. The password for both server and web admin is ```chelsea```.
 
 
 ## TODO
