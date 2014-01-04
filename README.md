@@ -16,11 +16,10 @@ Project: Chelsea Boots (project-chelsea)
 Download and install Cloudbees tool chain for your operating system:
 ```http://wiki.cloudbees.com/bin/view/RUN/BeesSDK```
 
-If you are on OSX, I recommend Homebrew:
+If you are on OSX, I recommend Homebrew
 
-```
-brew install cloudbees-sdk
-```
+```brew install cloudbees-sdk```
+
 
 ### Create CloudBees App
 
@@ -33,6 +32,7 @@ cd ~/CloudBees
 bees create chelsea
 cd ~/CloudBees/chelsea
 ```
+
 
 ### Clone/Fork Chelsea Repo
 
