@@ -10,19 +10,18 @@ TODO
 <!--- 
  // environment variables 
 --------------------------------------------------------------------------------->
-<!--- get project directory; assumes only one project --->
-<cfdirectory action="list" directory="#expandPath('/farcry/projects')#" name="qProjects" type="dir" />
+<cfinclude template="/farcryConstructor.cfm" />
+<!--- <cfdump var="#variables.this#" label="variables.this in index.cfm">
+<cfdump var="#application#"> --->
 
-<!--- get farcryConstructor.cfm settings --->
-<cffile action="read" file="#qProjects.directory#/#qProjects.name#/www/farcryConstructor.cfm" variable="farcryConstructor" />
-<cfset stInstall = structNew()>
-<cfset stInstall.name = rereplacenocase(farcryConstructor,'.*<cfset\s*?THIS.Name\s*?=\s*?["''](.*?)["''].*', '\1' , 'all') />
-<cfset stInstall.dsn = rereplacenocase(farcryConstructor,'.*<cfset\s*?THIS.dsn\s*?=\s*?["''](.*?)["''].*', '\1' , 'all') />
-<cfset stInstall.dbType = rereplacenocase(farcryConstructor,'.*<cfset\s*?THIS.dbType\s*?=\s*?["''](.*?)["''].*', '\1' , 'all') />
-<cfset stInstall.dbOwner = rereplacenocase(farcryConstructor,'.*<cfset\s*?THIS.dbOwner\s*?=\s*?["''](.*?)["''].*', '\1' , 'all') />
+<cfif NOT structKeyExists(variables.this, "projectDirectoryName")>
+	<cfset variables.this.projectDirectoryName = variables.this.name>
+</cfif>
+
+<cfset sqlDirectory = "#expandPath('/farcry/projects/' & variables.this.projectDirectoryName & '/install')#">
 
 <!--- check the datasource; must be empty --->
-<cfset stCheckDSN = checkDSN(dsn="#stInstall.dsn#", dbOwner="#stInstall.dbOwner#") />
+<cfset stCheckDSN = checkDSN(dsn="#variables.this.dsn#", dbOwner="#variables.this.dbOwner#") />
 
 
 <!--- 
@@ -30,9 +29,7 @@ TODO
 --------------------------------------------------------------------------------->
 <!--- insert data; deploy tables, run inserts --->
 <cfif structKeyExists(form, "installAction") AND form.installAction EQ "Install">
-	
-	<cfset sqlDirectory = "#qProjects.directory#/#qProjects.name#/install">
-	
+		
 	<!--- DEPLOY database schema --->
 	<cfset sqlFilePrefix = "DEPLOY-#form.dbType#_">
 	<cfdirectory action="list" directory="#sqlDirectory#" name="qSQLFiles" filter="#sqlFilePrefix#*.sql" />
@@ -52,15 +49,14 @@ TODO
 
 			</cfcatch>
 			</cftry>
-			<cfoutput><div>DONE - #sqlDirectory#/#qSQLFiles.NAME#</cfoutput><cfflush>
+			<cflog file="install" text="DEPLOY: #sqlDirectory#/#qSQLFiles.NAME#" type="information" />
 		</cfloop>
 		
 	</cfif>
 	
 	<!--- INSERT project sample data --->
 	<cfset sqlFilePrefix = "INSERT-">
-	<cfdirectory action="list" directory="#sqlDirectory#" name="qSQLFiles" filter="#sqlFilePrefix#*.sql" />
-	
+	<cfdirectory action="list" directory="#sqlDirectory#" name="qSQLFiles" filter="#sqlFilePrefix#*.sql" />	
 
 	<cfif qSQLFiles.recordCount>
 		
@@ -78,7 +74,7 @@ TODO
 			</cfcatch>
 			</cftry>
 			
-			<cfoutput><div>DONE - #sqlDirectory#/#qSQLFiles.NAME#</cfoutput><cfflush>
+			<cflog file="install" text="INSERT: #sqlDirectory#/#qSQLFiles.NAME#" type="information" />
 		</cfloop>
 		
 		
@@ -91,7 +87,7 @@ TODO
 		where		userid=<cfqueryparam cfsqltype="cf_sql_varchar" value="farcry" />
 	</cfquery>
 
-	<cflocation url="#cgi.script_name#" />
+	<cflocation url="#cgi.script_name#/webtop" />
 </cfif>
 
 
@@ -111,7 +107,7 @@ TODO
   	<div class="span3"></div>
   	<div class="span6">
     <h1>CloudBees Chelsea Install</h1>
-    
+
 	<cfif NOT stCheckDSN.bSuccess>
 		<div class="alert alert-block">
 			<h4>#stCheckDSN.errorTitle#</h4>
@@ -119,11 +115,12 @@ TODO
 		</div>
 	<cfelse>
 		<form class="form-horizontal" action="#cgi.script_name#?#cgi.query_string#" enctype="multipart/form-data" method="post">
-			<input type="hidden" name="dbtype" value="#stInstall.dbtype#">
-			<input type="hidden" name="dsn" value="#stInstall.dsn#">
-			<input type="hidden" name="dbowner" value="#stInstall.dbowner#">
+			<input type="hidden" name="dbtype" value="#variables.this.dbtype#">
+			<input type="hidden" name="dsn" value="#variables.this.dsn#">
+			<input type="hidden" name="dbowner" value="#variables.this.dbowner#">
 
 			<h3>Install Database</h3>
+			<p>Installing the FarCry data model and sample data into <code>#variables.this.dsn#</code>.
 			<div class="control-group">
 				<label class="control-label" for="farcryUserPassword">Farcry User Password</label>
 				<div class="controls">
@@ -143,22 +140,22 @@ TODO
 
     <h3>farcryConstructor.cfm Settings</h3>
 	<div class="alert alert-info">
-		Constructor is located at <code>#qProjects.directory#/#qProjects.name#/www/farcryConstructor.cfm</code>
+		Constructor is located at <code>#expandpath("/farcryConstructor.cfm")#</code>
 	</div>
     
 	<dl>
-		<dt>application.name = #stInstall.name#</dt>
-		<dd>Project Name; you can modify the name of the project by updating the <code>&lt;cfset THIS.Name = "#stInstall.name#" /&gt;</code> variable in the constructor.</dd>
+		<dt>application.name = #variables.this.name#</dt>
+		<dd>Project Name; you can modify the name of the project by updating the <code>&lt;cfset THIS.Name = "#variables.this.name#" /&gt;</code> variable in the constructor.</dd>
 
-		<dt>application.dbtype = #stInstall.dbtype#</dt>
-		<dd>Database type; you can modify the database type of the project by updating the <code>&lt;cfset THIS.dbtype = "#stInstall.dbtype#" /&gt;</code> variable in the constructor.</dd>
+		<dt>application.dbtype = #variables.this.dbtype#</dt>
+		<dd>Database type; you can modify the database type of the project by updating the <code>&lt;cfset THIS.dbtype = "#variables.this.dbtype#" /&gt;</code> variable in the constructor.</dd>
 		<dd>Your best option for CloudBees installation is the CloudBees mySQL database instance.</dd>
 
-		<dt>application.dbowner = #stInstall.dbowner#</dt>
-		<dd>Project Name; you can modify the name of the project by updating the <code>&lt;cfset THIS.dbowner = "#stInstall.dbowner#" /&gt;</code> variable in the constructor.</dd>
+		<dt>application.dbowner = #variables.this.dbowner#</dt>
+		<dd>Project Name; you can modify the name of the project by updating the <code>&lt;cfset THIS.dbowner = "#variables.this.dbowner#" /&gt;</code> variable in the constructor.</dd>
 
-		<dt>application.dsn = #stInstall.dsn#</dt>
-		<dd>Project Name; you can modify the name of the project by updating the <code>&lt;cfset THIS.dsn = "#stInstall.dsn#" /&gt;</code> variable in the constructor.</dd>
+		<dt>application.dsn = #variables.this.dsn#</dt>
+		<dd>Project Name; you can modify the name of the project by updating the <code>&lt;cfset THIS.dsn = "#variables.this.dsn#" /&gt;</code> variable in the constructor.</dd>
 	</dl>
 
 	</div>
