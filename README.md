@@ -50,9 +50,29 @@ cd ~/CloudBees/chelsea
 bees run
 ```
 
-Browse to ```http://localhost:8080/farcry/index.cfm``` -- you should see an installation screen (with an error!).
+Browse to ```http://localhost:8080/farcry/index.cfm``` -- you should see an installation screen. Make a note of the datasource name that the installer wants to use (will be ```chelsea-local``` by default).
+
+
+### mySQL Database
+
+Set up a blank mySQL database called ```chelsea-local``` (database encoding should be **UTF-8**). (Can be anything really, you decide!)
+
+
+### Set Up Railo Datasource
 
 Browse to ```http://localhost:8080/railo-context/admin/web.cfm``` -- we're going to login to the Railo admin and set up some datasources for our project. The password for both server and web admin is ```chelsea```.
+
+The datasource must be the same name as the datasource configured in the ```./farcryConstructor.cfm``` (will be ```chelsea-local``` by default). Make sure that you enable the mySQL option to **Allow multiple Queries**.
+
+
+### Install FarCry Schema
+
+Nearly done!  Now all we have to do is run the installer.
+
+Browse to ```http://localhost:8080/farcry/index.cfm``` -- nominate a password for the default ```farcry``` system admin account and press install.
+
+Logon on to the webtop ```http://localhost:8080/webtop``` and go to **ADMIN / DEVELOPER UTILITIES / Fix refObjects**. Just run the repair and all will be right in the world :)
+
 
 
 ## TODO
@@ -66,8 +86,8 @@ Set up instructions for s3 bucket:
 
 Set up mySQL db in Cloudbees:
 
-- unique name: farcryio-projectname
-- usr: as per db / pwd: as per db + 123
+- create 5MB free database instance
+- set up datasource (can be done locally)
 
 Datasource:
 
