@@ -31,7 +31,7 @@ Path placeholders:
 <!--	or ask your database distributor 																-->
 
 	<data-sources psq="true">
-	<data-source allow="511" blob="false" class="org.gjt.mm.mysql.Driver" clob="false" connectionLimit="-1" connectionTimeout="1" custom="useUnicode=true&amp;characterEncoding=UTF-8&amp;useLegacyDatetimeCode=true" database="chelsea-local" dsn="jdbc:mysql://{host}:{port}/{database}" host="localhost" metaCacheTimeout="60000" name="chelsea-local" password="" port="3306" storage="false" username="root" validate="false"/></data-sources>
+	<data-source allow="511" blob="false" class="org.gjt.mm.mysql.Driver" clob="false" connectionLimit="-1" connectionTimeout="1" custom="useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true&amp;useLegacyDatetimeCode=true" database="chelsea-local" dbdriver="MySQL" dsn="jdbc:mysql://{host}:{port}/{database}" host="localhost" metaCacheTimeout="60000" name="chelsea-local" password="" port="3306" storage="false" username="root" validate="false"/></data-sources>
 	
 	<resources>
     	<!--
