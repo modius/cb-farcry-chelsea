@@ -87,7 +87,7 @@ TODO
 		where		userid=<cfqueryparam cfsqltype="cf_sql_varchar" value="farcry" />
 	</cfquery>
 
-	<cflocation url="#cgi.script_name#/webtop" />
+	<cflocation url="/farcry/core/webtop" />
 </cfif>
 
 
