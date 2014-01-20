@@ -35,11 +35,12 @@ cd ~/CloudBees/chelsea
 
 ### Clone/Fork Chelsea Repo
 
-Delete the default ```./webapp``` folder and all its contents. We'll replace this with the repo your about to clone/fork. Clone the **CloudBees Chelsea Project** into the ```webapp``` folder.  Make sure the folder name is ```webapp``` -- it can't be anything else.
+Delete the default ```./webapp``` folder and all its contents. We'll replace this with the repo your about to clone/fork. Clone the **CloudBees Chelsea Project** into the ```webapp``` folder.  Make sure the folder name is ```webapp``` -- it can't be anything else.  The project uses git submodules so we'll need to initialise and update those as well.
 
 ```
 rm -rf webapp
 git clone https://github.com/modius/cb-farcry-chelsea.git webapp
+git submodule update --init
 ```
 
 Check to see that the application is correctly installed by starting up the app from within the root of the Cloudbees installation.
@@ -61,7 +62,7 @@ Set up a blank mySQL database called ```chelsea-local``` (database encoding shou
 
 Browse to **http://localhost:8080/railo-context/admin/web.cfm** -- we're going to login to the Railo admin and set up some datasources for our project. The password for both server and web admin is ```chelsea```.
 
-The datasource must be the same name as the datasource configured in the ```./farcryConstructor.cfm``` (will be ```chelsea-local``` by default). Make sure that you enable the mySQL option to **Allow multiple Queries**.
+The datasource must be the same name as the datasource configured in the ```./farcryConstructor.cfm``` (will be ```chelsea-local``` by default). Make sure that you enable the mySQL option to **Allow multiple Queries** and set it to **true**.
 
 
 ### Install FarCry Schema
