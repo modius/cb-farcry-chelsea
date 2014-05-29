@@ -40,6 +40,7 @@ Delete the default ```./webapp``` folder and all its contents. We'll replace thi
 ```
 rm -rf webapp
 git clone https://github.com/modius/cb-farcry-chelsea.git webapp
+cd webapp
 git submodule update --init
 ```
 
