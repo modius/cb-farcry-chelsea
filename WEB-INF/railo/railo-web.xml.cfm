@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><railo-configuration pw="61ae9a4412bbcab93db2cb3f26c9ed49311998b8dca41a5b349edd79fb873f6c" version="2.0"><cfabort/>
+<?xml version="1.0" encoding="UTF-8"?><railo-configuration pw="61ae9a4412bbcab93db2cb3f26c9ed49311998b8dca41a5b349edd79fb873f6c" version="4.2"><cfabort/>
 
 <!-- 
 Path placeholders:
@@ -152,4 +152,4 @@ Path placeholders:
 		
 	<application application-log="{railo-web}/logs/application.log" application-log-level="info" cache-directory="{railo-web}/cache/" cache-directory-max-size="100mb" exception-log="{railo-web}/logs/exception.log" exception-log-level="info" trace-log="{railo-web}/logs/trace.log" trace-log-level="info"/>
 	
-</railo-configuration>
+<rest/><gateways/><logging><logger appender="resource" appender-arguments="path:logs/" layout="classic" level="info" name="remoteclient"/><logger appender="resource" appender-arguments="path:{railo-web}/logs/mail.log" layout="classic" name="mail"/><logger appender="resource" appender-arguments="path:{railo-web}/logs/scheduler.log" layout="classic" name="scheduler"/><logger appender="resource" appender-arguments="path:{railo-web}/logs/application.log" layout="classic" level="info" name="application"/><logger appender="resource" appender-arguments="path:{railo-web}/logs/exception.log" layout="classic" level="info" name="exception"/><logger appender="resource" appender-arguments="path:{railo-web}/logs/trace.log" layout="classic" level="info" name="trace"/></logging><orm/></railo-configuration>
