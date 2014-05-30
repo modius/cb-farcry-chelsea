@@ -263,4 +263,4 @@ Path placeholders:
 	-->
 	<flex configuration="xml"/>
 
-</railo-configuration>
+<setting allow-compression="false" buffer-output="true" cfml-writer="white-space-pref" content-length="" suppress-content="false"/></railo-configuration>
