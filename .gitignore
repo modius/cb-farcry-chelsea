@@ -1,3 +1,8 @@
 /WEB-INF/railo/temp/
 chelsea.sublime-workspace
 chelsea.sublime-project
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
